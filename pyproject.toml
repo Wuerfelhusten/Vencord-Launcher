@@ -1,0 +1,34 @@
+[project]
+name = "vencord-launcher"
+version = "1.1.0"
+description = "Windows utility to keep Vencord and OpenAsar up to date"
+requires-python = ">=3.12"
+dependencies = [
+    "json5",
+    "pydantic",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "nuitka",
+    "pytest",
+    "pytest-mock",
+    "pytest-cov",
+]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+pythonVersion = "3.12"
+pythonPlatform = "Windows"
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff]
+line-length = 90
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tests"]
+log_cli = true
+log_cli_level = "DEBUG"
+addopts = "-vv"

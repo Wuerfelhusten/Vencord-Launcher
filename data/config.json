@@ -1,0 +1,7 @@
+{
+    "branch": "stable",             // stable, ptb or canary
+    "OpenAsar": true,               // whether you want OpenAsar to be installed with vencord
+    "Autostart": false,             // set a auto start for this launcher on windows
+    "StartDiscordMinimized": false, // starts discord minimized when launching from the launcher
+    "Debug": false                  // enable debug logging
+}

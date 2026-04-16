@@ -1,0 +1,49 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Build with Nuitka
+        run: |
+          uv run nuitka `
+            --standalone `
+            --output-filename=VencordLauncher.exe `
+            --windows-icon-from-ico=assets/icon.ico `
+            --remove-output `
+            src/main.py
+
+      - name: Copy config.json
+        run: Copy-Item data/config.json main.dist/config.json
+
+      - name: Create release archive
+        run: Compress-Archive -Path main.dist/* -DestinationPath VencordLauncher.zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: VencordLauncher.zip
+          generate_release_notes: true
