@@ -1,6 +1,6 @@
 [project]
 name = "vencord-launcher"
-version = "1.1.0"
+version = "1.0.0"
 description = "Windows utility to keep Vencord and OpenAsar up to date"
 requires-python = ">=3.12"
 dependencies = [
