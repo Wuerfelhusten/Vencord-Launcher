@@ -8,8 +8,8 @@ dependencies = [
     "pydantic",
 ]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "nuitka",
     "pytest",
     "pytest-mock",
