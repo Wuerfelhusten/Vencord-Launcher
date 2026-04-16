@@ -31,6 +31,7 @@ jobs:
         run: |
           uv run nuitka `
             --standalone `
+            --output-dir=. `
             --output-filename=VencordLauncher.exe `
             --windows-icon-from-ico=assets/icon.ico `
             --remove-output `
