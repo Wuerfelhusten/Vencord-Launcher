@@ -7,6 +7,7 @@ import subprocess
 import sys
 import urllib.request
 from pathlib import Path
+from urllib.request import Request
 
 from utilities.process_runner import ProcessRunner
 
@@ -51,10 +52,12 @@ class VencordInstaller:
         )
 
         try:
-            urllib.request.urlretrieve(
+            req = Request(
                 VencordInstaller.DOWNLOAD_URL,
-                str(cli_path),
+                headers={"User-Agent": "VencordLauncher"},
             )
+            with urllib.request.urlopen(req) as resp:
+                cli_path.write_bytes(resp.read())
             VencordInstaller.log.info(
                 "Downloaded VencordInstallerCli.exe"
                 " successfully."
